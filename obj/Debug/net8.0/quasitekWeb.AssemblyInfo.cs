@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("quasitekWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f5afb24dbbd49e1d8042fea0444fc5b53352e03")]
 [assembly: System.Reflection.AssemblyProductAttribute("quasitekWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("quasitekWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
