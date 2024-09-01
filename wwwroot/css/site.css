@@ -1,0 +1,184 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.custom-navbar {
+  background-color: #00687A;
+  height: 85px;
+  width: 100%;
+}
+
+.custom-navbar .navbar-brand {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.custom-navbar .nav-item {
+  height: 84.5px;
+  margin: 0;
+  padding: 0;
+  flex: none;
+}
+
+.custom-navbar .nav-link.custom-nav-link {
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 85px;  /* Adjust to center the text vertically */
+  letter-spacing: -0.011em;
+  text-align: center;
+  color: white !important;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 0 15px;
+  margin: 0 15px;
+  display: inline-block;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease;
+  height: 100%; /* This ensures the nav items fill the navbar height */
+  display: flex;
+  align-items: center;  /* Center the text inside the nav items */
+}
+
+.custom-navbar .nav-link.custom-nav-link:hover,
+.custom-navbar .nav-link.custom-nav-link.active {
+  border-bottom: 6px solid #6EBEB8;
+  position: relative;
+  bottom: 0; /* Align with the bottom of the navbar */
+}
+
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  background-color: white;
+  border-radius: 50px;
+  height: 60px;
+  max-width: 300px;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.text-custom {
+  color: #6EBEB8; /* Adjust this to your desired color */
+}
+
+#userDropdown {
+  color: #1a1a1a;
+  font-size: 25px;
+  vertical-align: cetner;
+}
+
+
+.container {
+  margin-top: 20px;
+}
+.custom-pagination {
+  margin-top: 20px;
+}
+
+.custom-pagination .page-item {
+  margin: 0 5px;
+}
+
+.custom-pagination .page-item .page-link {
+  padding: 10px 15px;
+  background-color: #F5F5F5;
+  border: 1px solid #F5F5F5;
+  color: #8F8F8F;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #6EBEB8;
+  color: #F5F5F5;
+  border-color: #6EBEB8;
+}
+
+.custom-pagination .page-item .page-link:hover {
+  background-color: #6EBEB8;
+  color: #F5F5F5;
+}
+
+.custom-pagination .page-item.disabled .page-link {
+  color: #8F8F8F;
+  pointer-events: none;
+}
+
+.custom-pagination .page-item .page-link {
+  border-radius: 4px;
+}
+
+.custom-pagination .page-item .page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #D3EBED;
+}
+
+.table td, 
+.table th {
+  vertical-align: middle;
+  text-align: center; /* Optional: Aligns text to the center horizontally */
+}
+.table th {
+  border-bottom: none; /* Removes the line between the table header and the content */
+}
+
+.table {
+  border-collapse: separate; /* This will ensure there is no border between table head and body */
+}
+
+.table th, .table td {
+  border-top: none; /* Ensures no top border on the cells */
+}
+
+.table th{
+  color : #8F8F8F;
+}
+.btn-outline-custom {
+  color: #1A7A77; /* Text color */
+  border-color: #1A7A77; /* Border color */
+  
+}
+
+.btn-outline-custom:hover {
+  background-color: #1A7A77; /* Background color on hover */
+  color: white; /* Text color on hover */
+  border-color: #1A7A77; /* Border color on hover */
+}
+
+.btn-custom {
+  background-color: #6EBEB8;
+  border-color: #6EBEB8;
+}
+
+.btn-custom:hover {
+  background-color: #5DA9A3; /* Slightly darker color on hover */
+  border-color: #5DA9A3;
+}

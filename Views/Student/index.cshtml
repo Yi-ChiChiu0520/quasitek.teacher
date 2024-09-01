@@ -1,0 +1,135 @@
+@using quasitekWeb.ViewModels
+@model PagedViewModel<quasitekWeb.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start flex-wrap">
+        <h2 class="me-3 mb-0" style="color: #1A7A77;">Students</h2>
+        <a asp-action="SignUp" asp-controller="Student" class="btn btn-primary btn-custom" style="margin-left:10px">Add Student</a>
+        <a asp-action="Delete" asp-controller="Student" class="btn btn-primary btn-custom" style="margin-left:10px">Delete Student</a>
+        <a asp-action="Update" asp-controller="Student" class="btn btn-primary btn-custom" style="margin-left:10px">Update Student</a>
+    </div>
+</div>
+
+
+<div class="row mb-3 d-flex align-items-center justify-content-between">
+    <!-- Left side: Back button -->
+    <div class="col-md-4">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+    <div class="col-md-8 d-flex justify-content-end">
+        <form method="get" action="@Url.Action("Index")" class="d-flex">
+            <!-- Input for Student Search -->
+            <input type="text" name="searchTerm" class="form-control" placeholder="Search Student..." value="@ViewBag.SearchTerm" style="width: 200px;" />
+            <!-- Search Submit Button -->
+            <button class="btn btn-outline-secondary ms-2" type="submit" style="width: 80px; white-space: nowrap;">Search</button>
+        </form>
+    </div>
+</div>
+
+
+@if(ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger mt-2">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Student Number</th>
+                    <th>Student Name</th>
+                    <th>Class</th>
+                    <th>History Records</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items) // Changed Model to Model.Items
+                {
+                    <tr>
+                        <td>@item.StudentNumber.ToUpper()</td>
+                        <td>@item.StudentName</td>
+                        <td>@item.Classes?.ClassesName</td>
+                        <td>
+                            <a asp-action="SearchStudentRecord" asp-controller="RecordLog" asp-route-searchTerm="@item.StudentNumber" class="btn btn-outline-custom">View Records</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Pagination Controls -->
+<nav class="d-flex justify-content-center">
+    <ul class="pagination custom-pagination">
+        <!-- Previous Button -->
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, searchTerm=ViewBag.SearchTerm})">«</a>
+        </li>
+
+        <!-- Always show the first page -->
+        <li class="page-item @(Model.PageNumber == 1 ? "active" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = 1, searchTerm=ViewBag.SearchTerm})">1</a>
+        </li>
+
+        <!-- Show ellipsis if there are more than two pages between the first page and the current page -->
+        @if (Model.PageNumber > 3)
+        {
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        }
+
+        <!-- Show the page before the current page if it's not the first or second page -->
+        @if (Model.PageNumber > 2)
+        {
+            var showPage = @Model.PageNumber - 1;
+            <li class="page-item"> 
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, searchTerm=ViewBag.SearchTerm})">@showPage</a>
+            </li>
+        }
+
+        <!-- Show the current page -->
+        @if (Model.PageNumber > 1 && Model.PageNumber < Model.TotalPages)
+        {
+            <li class="page-item active">
+                <span class="page-link">@Model.PageNumber</span>
+            </li>
+        }
+
+        <!-- Show the page after the current page if it's not the last or second to last page -->
+        @if (Model.PageNumber < Model.TotalPages - 1)
+        {
+            var showPage = Model.PageNumber + 1;
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, searchTerm=ViewBag.SearchTerm})">@showPage</a>
+            </li>
+        }
+
+        <!-- Show ellipsis if there are more than two pages between the current page and the last page -->
+        @if (Model.PageNumber < Model.TotalPages - 2)
+        {
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        }
+
+        <!-- Always show the last page -->
+        @if (Model.TotalPages > 1)
+        {
+            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.TotalPages, searchTerm=ViewBag.SearchTerm})">@Model.TotalPages</a>
+            </li>
+        }
+
+        <!-- Next Button -->
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, searchTerm=ViewBag.SearchTerm})">»</a>
+        </li>
+    </ul>
+</nav>
+}

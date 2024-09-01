@@ -1,0 +1,143 @@
+@using quasitekWeb.ViewModels
+@model PagedViewModel<quasitekWeb.ViewModels.CourseGroupViewModel>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start flex-wrap">
+        <h2 class="me-3 mb-0" style="color: #1A7A77;">Courses</h2>
+    </div>
+</div>
+
+<div class="row mb-3 d-flex align-items-center justify-content-between">
+    <!-- Left side: Back button -->
+    <div class="col-md-4">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Course Subject</th>
+                        <th>Classes</th>
+                        <th>Courses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var group in Model.Items)
+                    {
+                        <tr>
+                            <!-- Left Column: Course Group -->
+                            <td>@group.CourseGroupName</td>
+
+                            <!-- Middle Column: Classes -->
+                            <td>
+                                @{
+                                    var printedClasses = new HashSet<string>(); // Keeps track of already printed course names
+                                }
+                                @foreach (var classes in group.Classes)
+                                {
+                                    if(!printedClasses.Contains(classes.ClassesName))
+                                    {
+                                        <p>@classes.ClassesName</p>
+                                        printedClasses.Add(classes.ClassesName); // Add class name to the set after printing
+                                    }
+                                }
+                            </td>
+
+                            <!-- Right Column: Courses -->
+                            <td>
+                                <!-- Create a HashSet to track printed course names -->
+                                @{
+                                    var printedCourses = new HashSet<string>(); // Keeps track of already printed course names
+                                }
+
+                                @foreach (var course in group.Courses)
+                                {
+                                    if (!printedCourses.Contains(course.CourseName))
+                                    {
+                                        <p>@course.CourseName</p>
+                                        printedCourses.Add(course.CourseName); // Add course name to the set after printing
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<!-- Pagination Controls -->
+<nav class="d-flex justify-content-center">
+    <ul class="pagination custom-pagination">
+        <!-- Previous Button -->
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1})">«</a>
+        </li>
+
+        <!-- Always show the first page -->
+        <li class="page-item @(Model.PageNumber == 1 ? "active" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = 1})">1</a>
+        </li>
+
+        <!-- Show ellipsis if there are more than two pages between the first page and the current page -->
+        @if (Model.PageNumber > 3)
+        {
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        }
+
+        <!-- Show the page before the current page if it's not the first or second page -->
+        @if (Model.PageNumber > 2)
+        {
+            var showPage = @Model.PageNumber - 1;
+            <li class="page-item"> 
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1})">@showPage</a>
+            </li>
+        }
+
+        <!-- Show the current page -->
+        @if (Model.PageNumber > 1 && Model.PageNumber < Model.TotalPages)
+        {
+            <li class="page-item active">
+                <span class="page-link">@Model.PageNumber</span>
+            </li>
+        }
+
+        <!-- Show the page after the current page if it's not the last or second to last page -->
+        @if (Model.PageNumber < Model.TotalPages - 1)
+        {
+            var showPage = Model.PageNumber + 1;
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1})">@showPage</a>
+            </li>
+        }
+
+        <!-- Show ellipsis if there are more than two pages between the current page and the last page -->
+        @if (Model.PageNumber < Model.TotalPages - 2)
+        {
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        }
+
+        <!-- Always show the last page -->
+        @if (Model.TotalPages > 1)
+        {
+            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.TotalPages})">@Model.TotalPages</a>
+            </li>
+        }
+
+        <!-- Next Button -->
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1})">»</a>
+        </li>
+    </ul>
+</nav>

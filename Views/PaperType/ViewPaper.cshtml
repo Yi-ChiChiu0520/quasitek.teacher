@@ -1,0 +1,46 @@
+@model quasitekWeb.ViewModels.PaperTypeViewModel
+
+@{
+    ViewBag.Title = "Exam Details";
+}
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+         <h2 class="me-3 mb-0" style="color: #1A7A77;">Exam Details</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+<!-- Display Student Name, Class Name, and Course Name -->
+<p>Student Name：@Model.StudentName</p>
+<p>Class：@Model.ClassName</p>
+<p>Course ：@Model.CourseName</p>
+
+<!-- Display Paper Type Details -->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Exam Subject</th>
+            <th>Exam Duration</th>
+            <th>Number of Corrects</th>
+            <th>Correct Questions</th>
+            <th>Number of Wrongs</th>
+            <th>Wrong Questions</th>
+            <th>Total Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.TypeName</td>
+            <td>@Model.Time minutes</td>
+            <td>@Model.CorrectNumber</td>
+            <td>@(string.IsNullOrEmpty(Model.CorrectAnswers) ? "0" : Model.CorrectAnswers)</td>
+            <td>@Model.WrongNumber</td>
+            <td>@(string.IsNullOrEmpty(Model.WrongAnswers) ? "0" : Model.WrongAnswers)</td>
+            <td>@Model.Score %</td>
+        </tr>
+    </tbody>
+</table>

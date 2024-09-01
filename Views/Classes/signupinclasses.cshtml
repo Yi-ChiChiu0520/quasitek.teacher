@@ -1,0 +1,63 @@
+@model quasitekWeb.Models.Student
+
+@{
+    ViewBag.Title = "Add Student in Class " + ViewBag.Class?.ClassesName;
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+         <h2 class="me-3 mb-0" style="color: #1A7A77;">Add Student in Class</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+<p>Class: @ViewBag.ClassesName</p>
+<p>Course Subject: @ViewBag.SelectedClass?.CourseGroupName</p>
+<p>Number of Students: @ViewBag.SelectedClass?.StudentAmount</p>
+
+<form asp-action="SignUpInClasses" asp-controller="Classes" method="post">
+    <!-- Hidden input field to pass the classesId -->
+    <input type="hidden" name="classesId" value="@ViewBag.ClassesId" />
+
+    <div class="form-group">
+        <label asp-for="StudentNumber" class="control-label">Student Number<span class="text-danger">*</span></label>
+        <input asp-for="StudentNumber" class="form-control" placeholder="Enter Student Number" required/>
+        <span asp-validation-for="StudentNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudentName" class="control-label">Student Name<span class="text-danger">*</span></label>
+        <input asp-for="StudentName" class="form-control" placeholder="Enter Student Name" required/>
+        <span asp-validation-for="StudentName" class="text-danger"></span>
+    </div>
+    <div class="card-footer">
+        <center>
+            <button type="submit" class="btn btn-primary" style="background-color: #1A7A77; border-color: #1A7A77;">Add</button>  
+            <a asp-action="SeeStudent" asp-controller="Classes" asp-route-classesId="@ViewBag.ClassesId" class="btn btn-secondary">Cancel</a>
+        </center>
+    </div>
+</form>
+<div>
+    <form asp-action="UploadExcelStudentInClass" asp-controller="Classes" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="classesId" value="@ViewBag.ClassesId" />
+        <div class="form-group">
+            <label for="file">Upload Bulk Students:</label>
+            <input type="file" name="file" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #1A7A77; border-color: #1A7A77;" >Upload</button>
+         <a asp-action="DownloadExampleFileForClass" class="btn btn-info btn-custom" style="color:white">Download Example Excel</a>
+    </form>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+</div>

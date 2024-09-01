@@ -1,0 +1,54 @@
+@model IEnumerable<quasitekWeb.Models.Student>
+
+@{
+    ViewBag.Title = "Delete Student in Class " + ViewBag.SelectedClass?.ClassesName;
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+         <h2 class="me-3 mb-0" style="color: #1A7A77;">Delete Student in Class</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+
+<p>Class: @ViewBag.SelectedClass?.ClassesName</p>
+<p>Course Subject: @ViewBag.SelectedClass?.CourseGroupName</p>
+<p>Number of Students: @ViewBag.SelectedClass?.StudentAmount</p>
+
+<form asp-action="DeleteStudentInClasses" asp-controller="Classes" method="post">
+    <!-- Hidden input field to pass the classesId -->
+    <input type="hidden" name="classesId" value="@ViewBag.ClassesId" />
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Select Student to Delete<span class="text-danger">*</span></label>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex align-items-center">
+                <select name="studentNumber" class="form-control mr-2" style="width: 300px;" required>
+                    <option value="">Select Student</option>
+                    @foreach (var student in (IEnumerable<SelectListItem>)ViewBag.Students)
+                    {
+                        <option value="@student.Value">@student.Text</option>
+                    }
+                </select>
+                <button type="submit" class="btn btn-danger d-inline" style="background-color: #1A7A77; border-color: #1A7A77; margin-left: 10px;" >刪除</button>
+            </div>
+        </div>
+    </div>  
+</form>
+<div>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+</div>

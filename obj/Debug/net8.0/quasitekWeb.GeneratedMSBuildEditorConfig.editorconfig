@@ -1,0 +1,147 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = quasitekWeb
+build_property.RootNamespace = quasitekWeb
+build_property.ProjectDir = /Users/ethan/Desktop/quasitekPortfolio/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/ethan/Desktop/quasitekPortfolio
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/deletestudentinclasses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9kZWxldGVzdHVkZW50aW5jbGFzc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9pbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/searchstudentinclasses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9zZWFyY2hzdHVkZW50aW5jbGFzc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/seecourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9zZWVjb3Vyc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/seestudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9zZWVzdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9zaWdudXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/signupinclasses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy9zaWdudXBpbmNsYXNzZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Classes/updatestudentinclasses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nlcy91cGRhdGVzdHVkZW50aW5jbGFzc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Course/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cnNlL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Device/delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlL2RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Device/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Device/search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlL3NlYXJjaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Device/signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlL3NpZ251cC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Device/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGV2aWNlL3VwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/PaperType/ViewPaper.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFwZXJUeXBlL1ZpZXdQYXBlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/RecordLog/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVjb3JkTG9nL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/RecordLog/SearchClassesRecord.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVjb3JkTG9nL1NlYXJjaENsYXNzZXNSZWNvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/RecordLog/SearchStudentRecord.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVjb3JkTG9nL1NlYXJjaFN0dWRlbnRSZWNvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Student/delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9kZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Student/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9pbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Student/search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9zZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Student/signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9zaWdudXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Student/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC91cGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Teacher/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9pbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Teacher/signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9zaWdudXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ethan/Desktop/quasitekPortfolio/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-4z9rpg7efk

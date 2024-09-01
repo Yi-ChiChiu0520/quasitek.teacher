@@ -1,0 +1,194 @@
+@using quasitekWeb.ViewModels
+@model PagedViewModel<quasitekWeb.ViewModels.RecordLogViewModel>
+
+@{
+    ViewData["Title"] = "Records";
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start flex-wrap">
+        <h2 class="me-3 mb-0" style="color: #1A7A77;">Records</h2>
+    </div>
+</div>
+
+<div class="row mb-3 d-flex align-items-center justify-content-between">
+    <!-- Left side: Back button -->
+    <div class="col-md-4">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+
+    <!-- Right side: Search bar aligned to the right -->
+    <div class="col-md-8 d-flex justify-content-end">
+        <form method="get" action="@Url.Action("Index")" class="d-flex">
+            <!-- Dropdown for Classes -->
+            <select name="classesSearchTerm" class="form-control me-2" style="width: 200px;">
+                <option value="">Select Class</option>
+                @foreach (var classItem in ViewBag.Classes)
+                {
+                    var selectedAttribute = ViewBag.ClassesSearchTerm == classItem.Value ? " selected" : "";
+                    @Html.Raw($"<option value='{classItem.Value}'{selectedAttribute}>{classItem.Text}</option>")
+                }
+            </select>
+            <!-- Input for Student Search -->
+            <input type="text" name="studentSearchTerm" class="form-control" placeholder="Search Student..." value="@ViewBag.StudentSearchTerm" style="width: 200px;" />
+
+            <!-- Search Submit Button -->
+            <button class="btn btn-outline-secondary ms-2" type="submit" style="width: 80px; white-space: nowrap;">Search</button>
+
+            <!-- Clear Button -->
+            <a href="@Url.Action("Index")" class="btn btn-outline-secondary ms-2" style="width: 80px; white-space: nowrap;">Clear</a>
+        </form>
+    </div>
+</div>
+
+
+
+@if(ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger mt-2">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    <form asp-action="Index" method="get" class="form-inline">
+        <input type="hidden" name="studentSearchTerm" value="@ViewBag.StudentSearchTerm" />
+        <input type="hidden" name="classesSearchTerm" value="@ViewBag.ClassesSearchTerm" />
+
+        <div class="form-group">
+            <label for="sortOrder">Sorting</label>
+            <select id="sortOrder" name="sortOrder" class="form-control" onchange="this.form.submit();" style="width: 300px;">
+                <option value="">Select Sorting</option>
+                @Html.Raw($"<option value='recordDate_asc'{(ViewBag.SortOrder == "recordDate_asc" ? " selected" : "")}>Record Date Ascending</option>")
+                @Html.Raw($"<option value='recordDate_desc'{(ViewBag.SortOrder == "recordDate_desc" ? " selected" : "")}>Record Date Descending</option>")
+                @Html.Raw($"<option value='studentNumber_asc'{(ViewBag.SortOrder == "studentNumber_asc" ? " selected" : "")}>Student Number Ascending</option>")
+                @Html.Raw($"<option value='studentNumber_desc'{(ViewBag.SortOrder == "studentNumber_desc" ? " selected" : "")}>Student Number Descending</option>")
+                @Html.Raw($"<option value='acedemicTestScore_asc'{(ViewBag.SortOrder == "acedemicTestScore_asc" ? " selected" : "")}>Academic Test Score Ascending</option>")
+                @Html.Raw($"<option value='acedemicTestScore_desc'{(ViewBag.SortOrder == "acedemicTestScore_desc" ? " selected" : "")}>Academic Test Score Descending</option>")
+                @Html.Raw($"<option value='techTestScore_asc'{(ViewBag.SortOrder == "techTestScore_asc" ? " selected" : "")}>Technical Test Score Ascending</option>")
+                @Html.Raw($"<option value='techTestScore_desc'{(ViewBag.SortOrder == "techTestScore_desc" ? " selected" : "")}>Technical Test Score Descending</option>")
+            </select>
+        </div>
+    </form>
+<br/>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Record Date</th>
+            <th>Student Number</th>
+            <th>Student Name</th> <!-- Added this header -->
+            <th>Class</th>
+            <th>Course</th>
+            <th>Mode</th>
+            <th>Academic Score</th>
+            <th>Academic Details</th>
+            <th>Technical Score</th>
+            <th>Technical Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model.Items)
+        {
+            <tr>
+                <td>@record.RecordDate</td>
+                <td>@record.StudentNumber.ToUpper()</td>
+                <td>@record.StudentName</td> <!-- Assuming Student has a StudentName property -->
+                <td>@record.ClassesName</td> <!-- Assuming Classes has a ClassesName property -->
+                <td>@record.CourseName</td> <!-- Assuming Course has a CourseName property -->
+                <td>@record.ModeName</td> <!-- Assuming ModeNavigation has a ModeName property -->
+                <td>@record.FormattedAcedemicTestScore</td>
+                <td>
+                    @if(record.FormattedAcedemicTestScore == "N/A")
+                    {
+                        <span>N/A</span>
+                    }
+                    else
+                    {
+                        <a asp-action="ViewPaper" asp-controller="PaperType" asp-route-typeid="@record.AcedemicTypeId" class="btn btn-outline-custom">View Details</a>
+                    }
+                </td>
+                <td>@record.FormattedTechTestScore</td>
+                <td>
+                    @if(record.FormattedTechTestScore == "N/A")
+                    {
+                        <span>N/A</span>
+                    }
+                    else
+                    {
+                        <a asp-action="ViewPaper" asp-controller="PaperType" asp-route-typeid="@record.TechTypeId" class="btn btn-outline-custom">View Details</a>
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    <!-- Pagination Controls -->
+    <nav class="d-flex justify-content-center">
+    <ul class="pagination custom-pagination">
+        <!-- Previous Button -->
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, studentSearchTerm = ViewBag.StudentSearchTerm, classesSearchTerm = ViewBag.ClassesSearchTerm, sortOrder = ViewBag.SortOrder })">«</a>
+        </li>
+
+        <!-- Always show the first page -->
+        <li class="page-item @(Model.PageNumber == 1 ? "active" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = 1, studentSearchTerm = ViewBag.StudentSearchTerm, classesSearchTerm = ViewBag.ClassesSearchTerm, sortOrder = ViewBag.SortOrder })">1</a>
+        </li>
+
+        <!-- Show ellipsis if there are more than two pages between the first page and the current page -->
+        @if (Model.PageNumber > 3)
+        {
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        }
+
+        <!-- Show the page before the current page if it's not the first or second page -->
+        @if (Model.PageNumber > 2)
+        {
+            var showPage = @Model.PageNumber - 1;
+            <li class="page-item"> 
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, studentSearchTerm = ViewBag.StudentSearchTerm, classesSearchTerm = ViewBag.ClassesSearchTerm, sortOrder = ViewBag.SortOrder })">@showPage</a>
+            </li>
+        }
+
+        <!-- Show the current page -->
+        @if (Model.PageNumber > 1 && Model.PageNumber < Model.TotalPages)
+        {
+            <li class="page-item active">
+                <span class="page-link">@Model.PageNumber</span>
+            </li>
+        }
+
+        <!-- Show the page after the current page if it's not the last or second to last page -->
+        @if (Model.PageNumber < Model.TotalPages - 1)
+        {
+            var showPage = Model.PageNumber + 1;
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, studentSearchTerm = ViewBag.StudentSearchTerm, classesSearchTerm = ViewBag.ClassesSearchTerm, sortOrder = ViewBag.SortOrder })">@showPage</a>
+            </li>
+        }
+
+        <!-- Show ellipsis if there are more than two pages between the current page and the last page -->
+        @if (Model.PageNumber < Model.TotalPages - 2)
+        {
+            <li class="page-item disabled"><span class="page-link">...</span></li>
+        }
+
+        <!-- Always show the last page -->
+        @if (Model.TotalPages > 1)
+        {
+            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.TotalPages, studentSearchTerm = ViewBag.StudentSearchTerm, classesSearchTerm = ViewBag.ClassesSearchTerm, sortOrder = ViewBag.SortOrder })">@Model.TotalPages</a>
+            </li>
+        }
+
+        <!-- Next Button -->
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, studentSearchTerm = ViewBag.StudentSearchTerm, classesSearchTerm = ViewBag.ClassesSearchTerm, sortOrder = ViewBag.SortOrder })">»</a>
+        </li>
+    </ul>
+</nav>
+
+
+}

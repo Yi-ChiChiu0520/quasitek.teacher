@@ -1,0 +1,68 @@
+@using quasitekWeb.ViewModels
+@model PagedViewModel<quasitekWeb.Models.Student>
+
+@{
+    ViewBag.Title = "Students in Class " + ViewBag.Class?.ClassesName;
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-12 d-flex align-items-center justify-content-start flex-wrap">
+        <h2 class="me-3 mb-0" style="color: #1A7A77;">Students in Class</h2>
+        <a asp-action="SignUpInClasses" asp-controller="Classes" asp-route-classesId="@ViewBag.ClassesId" class="btn btn-primary btn-custom" style="margin-left:10px">Add Student in Class</a>
+        <a asp-action="SearchStudentInClasses" asp-controller="Classes" asp-route-classesId="@ViewBag.ClassesId" class="btn btn-primary btn-custom" style="margin-left:10px">Search Student in Class</a>
+        <a asp-action="DeleteStudentInClasses" asp-controller="Classes" asp-route-classesId="@ViewBag.ClassesId" class="btn btn-primary btn-custom" style="margin-left:10px">Delete Student in Class</a>
+        <a asp-action="UpdateStudentInClasses" asp-controller="Classes" asp-route-classesId="@ViewBag.ClassesId" class="btn btn-primary btn-custom" style="margin-left:10px">Update Student in Class</a>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+
+<p>Class: @ViewBag.Class?.ClassesName</p>
+<p>Course Subject: @ViewBag.Class?.CourseGroupName</p>
+<p>Number of Students: @ViewBag.Class?.StudentAmount</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Student Number</th>
+            <th>Student Name</th>
+            <th>History Records</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Items)
+        {
+            <tr>
+                <td>@student.StudentNumber.ToUpper()</td>
+                <td>@student.StudentName</td>
+                <td>
+                    <a asp-action="SearchStudentRecord" asp-controller="RecordLog" asp-route-searchTerm="@student.StudentNumber" class="btn btn-outline-custom">View Records</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<nav class="d-flex justify-content-center">
+    <ul class="pagination custom-pagination rounded">
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("SeeStudent", new { classesId = ViewBag.ClassesId, page = Model.PageNumber - 1 })">«</a>
+        </li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                <a class="page-link" href="@Url.Action("SeeStudent", new { classesId = ViewBag.ClassesId, page = i })">@i</a>
+            </li>
+        }
+
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("SeeStudent", new { classesId = ViewBag.ClassesId, page = Model.PageNumber + 1 })">»</a>
+        </li>
+    </ul>
+</nav>

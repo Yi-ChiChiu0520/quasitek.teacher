@@ -1,0 +1,34 @@
+@* @model quasitekWeb.Models.Student
+
+@{
+    ViewData["Title"] = "Search Student";
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+        <h2 class="me-3 mb-0" style="color: #1A7A77;">搜尋學生</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">返回</button>
+    </div>
+</div>
+<form asp-action="SearchStudent" method="get" class="form-inline">
+    <div class="col-md-12">
+        <label>搜尋條件<span class="text-danger">*</span></label>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex align-items-center">
+            <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="輸入學生學號或名字" style="width: 300px;" required/>
+            <button type="submit" class="btn btn-primary d-inline" style="background-color: #1A7A77; border-color: #1A7A77; margin-left: 10px;">搜尋</button>
+        </div>    
+    </div>
+</form>
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+</div> *@

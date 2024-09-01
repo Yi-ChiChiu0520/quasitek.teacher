@@ -1,0 +1,47 @@
+@model List<quasitekWeb.Models.Teacher>
+
+@{
+    ViewData["Title"]="Teachers";
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-12 d-flex align-items-center justify-content-start flex-wrap">
+        <h2 class="me-3 mb-0" style="color: #1A7A77;">Teachers</h2>
+        <a asp-action="SignUp" asp-controller="Teacher" class="btn btn-primary btn-custom" style="margin-left:10px">Add Teacher</a>
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Teacher ID</th>
+                    <th>Teacher Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Authority Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.TeacherId</td>
+                        <td>@item.TeacherName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Pw</td>
+                        <td>@item.Authorize</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

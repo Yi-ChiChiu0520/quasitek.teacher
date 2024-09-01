@@ -1,0 +1,96 @@
+@model quasitekWeb.Models.Student
+
+@{
+    ViewBag.Title = "Update Student in Class " + ViewBag.Class?.ClassesName;
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+         <h2 class="me-3 mb-0" style="color: #1A7A77;">Update Student in Class</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+
+@if (ViewBag.SelectedClass != null)
+{
+    <p>Class: @ViewBag.SelectedClass.ClassesName</p>
+    <p>Course Subject: @ViewBag.SelectedClass.CourseGroupName</p>
+    <p>Number of Students: @ViewBag.SelectedClass.StudentAmount</p>
+}
+
+@if (Model == null || Model.StudentId == 0)
+{
+    <!-- Step 1: Student Selection -->
+    <form asp-action="UpdateStudentInClasses" method="get">
+        <input type="hidden" name="classesId" value="@ViewBag.ClassesId" /> <!-- Persist classId -->
+        <div class="form-group">
+            <label>Select Student to Update<span class="text-danger">*</span></label>
+            <select name="studentId" class="form-control mr-2" onchange="this.form.submit();" style="width: 300px;">
+                <option value="">Select student</option>
+                @if (ViewBag.Students != null)
+                {
+                    @foreach (var student in (IEnumerable<SelectListItem>)ViewBag.Students)
+                    {
+                        <option value="@student.Value">@student.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </form>
+}
+else
+{
+    <!-- Step 2: Update Student Form -->
+    <form asp-action="UpdateStudentInClasses" method="post">
+        <input type="hidden" name="StudentId" value="@Model.StudentId" />
+        <input type="hidden" name="classesId" value="@ViewBag.ClassesId" />
+
+        <div class="form-group">
+            <label for="studentNumber">Student Number<span class="text-danger">*</span></label>
+            <input asp-for="StudentNumber" class="form-control" placeholder="Enter Student Number" />
+            <span asp-validation-for="StudentNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="studentName">Student Name<span class="text-danger">*</span></label>
+            <input asp-for="StudentName" class="form-control" placeholder="Enter Student Name" />
+            <span asp-validation-for="StudentName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Class<span class="text-danger">*</span></label>
+            <select name="newClassesId" class="form-control" required>
+                <option value="">Select Class</option>
+                @if (ViewBag.Classes != null)
+                {
+                    @foreach (var cls in (IEnumerable<SelectListItem>)ViewBag.Classes)
+                    {
+                        <option value="@cls.Value">@cls.Text</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="card-footer">
+            <center>
+                <button type="submit" class="btn btn-primary" style="background-color: #1A7A77; border-color: #1A7A77;">Update</button>
+                <a asp-action="Index" asp-controller="Student" class="btn btn-secondary">Cancel</a>
+            </center>
+        </div>
+    </form>
+    <div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+    </div>
+}

@@ -1,0 +1,50 @@
+@model quasitekWeb.Models.Device
+
+@{
+    ViewData["Title"] = "Update Device";
+}
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+         <h2 class="me-3 mb-0" style="color: #1A7A77;">Update Device</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+<form asp-action="UpdateDevice" method="post">
+    <div class="form-group">
+        <label for="deviceId">Device ID<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="deviceId" name="deviceId" placeholder="Enter Device ID" required/>
+    </div>
+    
+    <div class="form-group">
+        <label for="deviceName">Device Name<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="deviceName" name="deviceName" placeholder="Enter Device Name" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="deviceModel">Device Model<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="deviceModel" name="deviceModel" placeholder="Enter Device Model" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="purchaseDate">Purchase Date<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="purchaseDate" name="purchaseDate" placeholder="Select Purchase Date" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="expireDate">Expiration Date<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="expireDate" name="expireDate" placeholder="Select Expiration Date" required/>
+    </div>
+
+    <div class="card-footer">
+        <center>
+            <button type="submit" class="btn btn-primary" style="background-color: #1A7A77; border-color: #1A7A77;">Update</button>
+            <a asp-action="Index" asp-controller="Device" class="btn btn-secondary">Cancel</a>
+        </center>
+    </div>
+</form>

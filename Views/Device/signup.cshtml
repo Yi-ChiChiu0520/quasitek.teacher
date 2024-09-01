@@ -1,0 +1,52 @@
+@model Device
+
+@{
+    ViewData["Title"] = "Sign Up New Device";
+}
+<div class="row mb-3 align-items-center">
+    <div class="col-md-8 d-flex align-items-center justify-content-start">
+         <h2 class="me-3 mb-0" style="color: #1A7A77;">Add Device</h2>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <button onclick="window.history.back();" class="btn btn-secondary btn-sm">Back</button>
+    </div>
+</div>
+<form asp-action="SignUpDevice" asp-controller="Device" method="post">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label>Device ID<span class="text-danger">*</span></label> 
+                <input asp-for="DeviceId" type="text" class="form-control" placeholder="Enter Device ID" required>  
+            </div>
+      
+            <div class="form-group">
+                <label>Device Name<span class="text-danger">*</span></label>
+                <input asp-for="DeviceName" type="text" class="form-control" placeholder="Enter Device Name" required>  
+            </div>
+
+            <div class="form-group">
+                <label>Device Model<span class="text-danger">*</span></label>
+                <input asp-for="DeviceModel" type="text" class="form-control" placeholder="Enter Device Model" required>  
+            </div>
+
+            <div class="form-group">
+                <label>Purchase Date<span class="text-danger">*</span></label>
+                <input asp-for="PurchaseDate" type="date" class="form-control" placeholder="Select Purchase Date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Expiration Date<span class="text-danger">*</span></label>
+                <input asp-for="ExpireDate" type="date" class="form-control" placeholder="Select Expiration Date" required>
+            </div>
+            <div class="card-footer">
+                <center>
+                    <button type="submit" class="btn btn-primary" style="background-color: #1A7A77; border-color: #1A7A77;">Add</button>  
+                    <a asp-action="Index" asp-controller="Device" class="btn btn-secondary">Cancel</a>
+                </center>
+            </div>
+        </div>
+    </div>
+</form>
